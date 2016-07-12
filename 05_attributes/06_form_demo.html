@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Demo</title>
+</head>
+<body>
+
+<form action="formDemo.php" method="post">
+<h1>My Fancy Form Demo</h1>
+<p>Please complete the form below:</p>
+
+<table>
+<tr>
+    <td>First Name:</td>
+    <td><input type="text" name="firstName"></td>
+</tr>
+<tr>
+    <td>Last Name:</td>
+    <td><input type="text" name="lastName"></td>
+</tr>
+<tr>
+    <td>Foods you like:<br><small>Check all that apply</small></td>
+    <td>
+        <input type="checkbox" name="foods[]" value="pizza"> Pizza<br>
+        <input type="checkbox" name="foods[]" value="hamburgers"> Hamburgers<br>
+        <input type="checkbox" name="foods[]" value="tacos"> Tacos<br>
+        <input type="checkbox" name="foods[]" value="salads"> Salads<br>
+    </td>
+</tr>
+<tr>
+    <td>Eye Color:</td>
+    <td>
+        <input type="radio" name="eyeColor" value="blue"> Blue<br>
+        <input type="radio" name="eyeColor" value="green"> Green<br>
+        <input type="radio" name="eyeColor" value="brown"> Brown<br>
+        <input type="radio" name="eyeColor" value="hazel"> Hazel<br>
+    </td>
+</tr>
+<tr>
+    <td>Birth Month:</td>
+    <td>
+        <select name="month" size="1">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+    </td>
+</tr>
+</table>
+<input type="submit" value="submit the form">
+</form>
+<p>This form will submit it's data to a PHP script on the server, which will display what it received.</p>
+<p>If you're interested in learning about <a href="http://www.php.net">PHP</a>, you can take my Coding 101 class!</p>
+
+    
+</body>
+</html>
+
+
