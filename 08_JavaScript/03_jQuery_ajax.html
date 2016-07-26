@@ -40,6 +40,10 @@
             });
         });
 
+        /**
+         * Populates the the city drop down menu based on the state param
+         * @param state
+         */
         function getCities(state)
         {
             $.getJSON('citiesApi.php', {'state' : state}, function (data) {
@@ -49,6 +53,11 @@
             $('#citySelect').fadeIn('fast');
         }
 
+        /**
+         * Writes a list of zip codes to the screen based on city and state params
+         * @param state
+         * @param city
+         */
         function getZips(state, city)
         {
             $.getJSON('citiesApi.php', {'state' : state, 'city' : city}, function (data) {
@@ -65,6 +74,11 @@
             $("#zipCodes").fadeIn('fast');
         }
 
+        /**
+         * Populates a select menu with the given options
+         * @param selectId
+         * @param options
+         */
         function populateSelects(selectId, options)
         {
             // clear the select options
@@ -83,6 +97,9 @@
             selectElement.html(newOptions.join(''));
         }
 
+        /**
+         * Hides elements on the page
+         */
         function hideOthers()
         {
             $('#citySelect').hide();
