@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery AJAX Drilldown</title>
+
+    <style>
+        div {
+            margin: 10px 0px 10px 0px;
+        }
+    </style>
+
+    <!-- Include jQuery Framework -->
+    <script src="jquery-3.1.0.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        // wait for the page to load
+        $(document).ready(function(){
+
+            // hide certain elements to start
+            hideOthers();
+
+            // fetch the states from the web server api
+            $.getJSON('citiesApi.php', function (data) {
+                populateSelects('stateSelect', data);
+            });
+
+            // listen for a selection to be made
+            $('#stateSelect').change(function(){
+                hideOthers();
+
+                var selectedState = $('#stateSelect option:selected').val();
+                getCities(selectedState);
+            });
+
+            $('#citySelect').change(function(){
+                var selectedState = $('#stateSelect option:selected').val();
+                var selectedCity = $('#citySelect option:selected').val();
+                getZips(selectedState, selectedCity);
+            });
+        });
+
+        function getCities(state)
+        {
+            $.getJSON('citiesApi.php', {'state' : state}, function (data) {
+                populateSelects('citySelect', data);
+            });
+
+            $('#citySelect').fadeIn('fast');
+        }
+
+        function getZips(state, city)
+        {
+            $.getJSON('citiesApi.php', {'state' : state, 'city' : city}, function (data) {
+                // build array of values
+                var zipCodes = [];
+
+                $.each(data, function(key, val){
+                    zipCodes.push("<li>" + val + "</li>");
+                });
+
+                $("#zipCodes").html("<ul>" + zipCodes.join('') + "</ul>");
+            });
+
+            $("#zipCodes").fadeIn('fast');
+        }
+
+        function populateSelects(selectId, options)
+        {
+            // clear the select options
+            var selectElement = $("#" + selectId);
+            selectElement.html('');
+
+            // build array of new options
+            var newOptions = ['<option value="">Select an option</option>'];
+
+            // add all the elements from the web server to the array
+            $.each(options, function(key, val){
+                newOptions.push('<option value="' + val + '">' + val + '</option>');
+            });
+
+            // populate the select menu with new options
+            selectElement.html(newOptions.join(''));
+        }
+
+        function hideOthers()
+        {
+            $('#citySelect').hide();
+            $("#zipCodes").hide();
+        }
+    </script>
+
+</head>
+<body>
+<h1>Zip Code Finder Tool</h1>
+<p>Select the state from the menu</p>
+
+<div>
+<select id="stateSelect" size="1">
+    <option value="">Loading... Please wait.</option>
+</select>
+</div>
+
+<div>
+<select id="citySelect" size="1"></select>
+</div>
+
+<div id="zipCodes"></div>
+
+</body>
+</html>

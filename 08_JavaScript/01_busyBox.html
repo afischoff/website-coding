@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Busy Box - Fun with Events</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+        }
+        div {
+            float: left;
+            max-width: 300px;
+            border: 1px solid #333333;
+            margin: 10px;
+            padding: 20px;
+        }
+        #timeSpan {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript">
+        function changeSubhead()
+        {
+            var subheadElement = document.getElementById('subhead');
+
+            if (subheadElement.style.color == 'red') {
+                subheadElement.style.color = "blue";
+                subheadElement.innerHTML = "Look at me! I'm blue!";
+
+            } else {
+                subheadElement.style.color = "red";
+                subheadElement.innerHTML = "Look at me! I'm red!";
+            }
+        }
+
+        function currentTime()
+        {
+            document.getElementById('timeParagraph').style.display = 'block';
+            var currTime = new Date();
+            document.getElementById('timeSpan').innerHTML = currTime.toDateString() + " " + currTime.toTimeString();
+        }
+    </script>
+</head>
+<body>
+<h1>JavaScript Busy Box</h1>
+<h3 id="subhead">Fun With Events</h3>
+<div>
+    <b>Press The Button</b><br>
+    <input type="button" value="Press Me!" onclick="alert('You pressed the button! Hooray!')">
+</div>
+<div id="bgDiv">
+    <b>Press The Button</b><br>
+    <input type="button" value="Press Me!" onclick="document.getElementById('bgDiv').style.backgroundColor = 'blue';">
+</div>
+<div>
+    <b>Press The Button</b><br>
+    <input type="button" value="Press Me!" onclick="changeSubhead()">
+</div>
+<div>
+    <b>Press The Button</b><br>
+    <input type="button" value="Press Me!" onclick="currentTime()">
+    <p id="timeParagraph" style="display: none;">The current time is: <span id="timeSpan"></span></p>
+</div>
+</body>
+</html>

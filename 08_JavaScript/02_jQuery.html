@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Busy Box - Fun with Events</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+        }
+        div {
+            float: left;
+            max-width: 300px;
+            border: 1px solid #333333;
+            margin: 10px;
+            padding: 20px;
+        }
+        #timeSpan {
+            color: green;
+            font-weight: bold;
+        }
+        .red {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+    </style>
+
+    <!-- Include jQuery Framework -->
+    <script src="jquery-3.1.0.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        // Wait till the page is done loading
+        $(document).ready(function(){
+
+            // bind the onclick functions
+            $('#alertBtn').click(function(){
+                alert('You pressed the button! Hooray!');
+            });
+
+            $('#bgDivBtn').click(function(){
+                $('#bgDiv').css('backgroundColor', 'blue');
+            });
+
+            $('#subheadBtn').click(function(){
+                changeSubhead();
+            });
+
+            $('#timeBtn').click(function(){
+                var currTime = new Date();
+                var timeText = currTime.toDateString() + " " + currTime.toTimeString();
+                $('#timeSpan').text(timeText);
+                $('#timeParagraph').css('display', 'block');
+            });
+        });
+
+        function changeSubhead()
+        {
+            var subheadElement = $('#subhead');
+
+            if (subheadElement.hasClass('red')) {
+                subheadElement.removeClass('red');
+                subheadElement.addClass('blue');
+                subheadElement.text("Look at me! I'm blue!");
+
+            } else {
+                subheadElement.removeClass('blue');
+                subheadElement.addClass('red');
+                subheadElement.text("Look at me! I'm red!");
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>JavaScript Busy Box</h1>
+<h3 id="subhead">Fun With Events</h3>
+<div>
+    <b>Press The Button</b><br>
+    <input id="alertBtn" type="button" value="Press Me!">
+</div>
+<div id="bgDiv">
+    <b>Press The Button</b><br>
+    <input id="bgDivBtn" type="button" value="Press Me!">
+</div>
+<div>
+    <b>Press The Button</b><br>
+    <input id="subheadBtn" type="button" value="Press Me!">
+</div>
+<div>
+    <b>Press The Button</b><br>
+    <input id="timeBtn" type="button" value="Press Me!">
+    <p id="timeParagraph" style="display: none;">The current time is: <span id="timeSpan"></span></p>
+</div>
+</body>
+</html>
